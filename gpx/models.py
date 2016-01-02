@@ -53,7 +53,6 @@ class Track(models.Model):
     last_updated_date = models.DateTimeField(auto_now=True)
     update_user = models.IntegerField(null=False)
     
-    
 class Waypoint(models.Model):
     id = models.AutoField(primary_key=True)
     lat = models.DecimalField(max_digits=19, decimal_places=10, null=False)

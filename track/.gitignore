@@ -1,5 +1,5 @@
 /__init__.pyc
-/settings.pyc
+/admin.pyc
+/models.pyc
 /urls.pyc
 /views.pyc
-/wsgi.pyc

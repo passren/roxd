@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'roxd',
     'gpx',
     'track',
+    'member',
 ]
 
 MIDDLEWARE_CLASSES = [

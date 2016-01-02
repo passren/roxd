@@ -1,7 +1,95 @@
 {% extends "base.html" %}
 
 {% block title %}Track{% endblock %}
+{% load staticfiles %}
+{% block addtional_static %}
+<link rel="stylesheet" href="{% static 'openlayers/ol.css' %}" type="text/css">
+{% endblock %}
 
-{% block content %}  
-<p>Track Main Page!</p>  
+{% block content %}
+<div style="padding-top: 5px;">
+	<form>
+	<div class="form-group">
+		<input type="text" class="form-control" id="key_words" placeholder="Search tracks here...">
+	</div>
+	</form>
+</div>
+<div class="container-fluid row">
+	<div class="col-md-3">
+        <div class="row">
+    		<div class="list-group">
+    			<div class="list-group-item">
+    				<div class="list-group-item-heading">
+                        <a href="javascript:mapUtil.loadTrackOnMap({{ track.id }});">XXXXX1</a>
+                    </div>
+                    <div class="list-group-item-text">{{ track.description|default:'No Description!' }}</div>
+                    <div class="list-group-item-text" align="right">{{ track.creator }}@{{ track.create_date|date:'Y-m-d H:i' }}</div>
+    			</div>
+    		</div>
+        </div>
+	</div>
+	<div class="col-md-9">
+		<div class="row container-fluid map-toolbar">
+            <div class="btn-toolbar-right">
+    			<div class="btn-group btn-group-sm" role="group">
+    				<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-zoom-in"></span>+</button>
+    				<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-zoom-out"></span>-</button>
+    				<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        Switch
+                        <span class="caret"></span>
+                    </button>
+    				<ul id="map-toolbar-dropdown" class="dropdown-menu">
+                        <li><a href="javascript:mapUtil.setMapType('OSM')">OSM Map</a></li>
+    			        <li><a href="javascript:mapUtil.setMapType('GG_SAT')">Google Satellite</a></li>
+    			        <li><a href="javascript:mapUtil.setMapType('GG_PHY')">Google Physical</a></li>
+    			        <li><a href="javascript:mapUtil.setMapType('GG_STR')">Google Streets</a></li>
+    			        <li><a href="javascript:mapUtil.setMapType('GG_HYB')">Google Hybrid</a></li>
+    				</ul>
+				</div>
+				<div class="btn-group btn-group-sm" role="group">
+    				<button class="btn btn-info" type="button">Waypoints</button>
+    				<button class="btn btn-info" type="button">Tracks</button>
+    				<button class="btn btn-info" type="button">Photos</button>
+    			</div>
+            </div>
+		</div>
+		<div class="row map-panel">
+			<div id="map" class="map"> </div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block body_script_block %}
+<script type="text/javascript" src="{% static 'openlayers/ol.js' %}"></script>
+<script>
+	var map = new ol.Map({
+		layers : [new ol.layer.Tile({
+			source : new ol.source.OSM()
+		})],
+		target : 'map',
+		controls : ol.control.defaults({
+			attributionOptions : /** @type {olx.control.AttributionOptions} */( {
+				collapsible : false
+			})
+		}),
+		view : new ol.View({
+			center : [0, 0],
+			zoom : 4
+		})
+	});
+
+	document.getElementById('zoom-out').onclick = function() {
+		var view = map.getView();
+		var zoom = view.getZoom();
+		view.setZoom(zoom - 1);
+	};
+
+	document.getElementById('zoom-in').onclick = function() {
+		var view = map.getView();
+		var zoom = view.getZoom();
+		view.setZoom(zoom + 1);
+	}; 
+</script>
 {% endblock %}
