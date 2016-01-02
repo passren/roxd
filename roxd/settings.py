@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'roxd',
     'gpx',
+    'track',
 ]
 
 MIDDLEWARE_CLASSES = [
