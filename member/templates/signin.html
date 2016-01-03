@@ -14,31 +14,57 @@
 		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" type="text/css">
 		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" type="text/css">
 		<link rel="stylesheet" href="{% static 'site/css/default.css' %}" type="text/css">
+		<script type="text/javascript" src="{% static 'jquery/js/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 	</head>
 
 	<body>
 
 		<div class="container">
-			<form class="form-signin">
-				<p align="center"><a href="/"><img src="{% static 'site/images/logo-medium.png' %}" /></a></p>
+			<br></br>
+			<p align="center"><a href="/"><img src="{% static 'site/images/logo-medium.png' %}" /></a></p>
+			
+			{% for error in form.non_field_errors %}
+			<div class="container login-errors alert alert-danger" role="alert">
+				<p>{{ error }}</p>
+			</div>
+			{% endfor %}
+		</div>
+
+		<div class="container login panel panel-success">
+			<div class="panel-heading">
 				<h2 class="form-signin-heading" align="center">Sign in to Roxd</h2>
-				<label for="inputEmail" class="sr-only">Email address</label>
-				<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-				<label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-				<div class="checkbox">
-					<label><input type="checkbox" value="remember-me">Remember me </label>
-				</div>
-				<button class="btn btn-lg btn-success btn-block" type="submit">
-					Sign in
-				</button>
-			</form>
+			</div>
+			<div class="panel-body">
+				<form class="form-signin" action="/signin/" method="post">
+					{% csrf_token %}
+					<label for="inputUsername" class="title">Username: {{ form.username.errors }}</label>
+					<input type="text" name="username" class="form-control" placeholder="Username or email address" 1required autofocus value="{{ form.username.value|default:'' }}" />
+					<p></p>
+					<label for="inputPassword" class="title">Password: {{ form.password.errors }}</label>
+					<input type="password" name="password" class="form-control" placeholder="Password" 1required value="{{ form.password.value|default:'' }}" />
+					
+					<div class="checkbox">
+						<label><input name="remember" type="checkbox" {% if form.remember.value %}checked{% endif %}/>Remember me</label>
+					</div>
+					<button class="btn btn-lg btn-success btn-block" type="submit">
+						Sign in
+					</button>
+				</form>
+			</div>
 		</div>
 		
-		<div class="container form-signin">
+		<div class="container panel form-signin">
 			<p><a href="#">Forgot password?</a></p>
 			<p>New to Roxd? <a href="#">Create an account. </a></p>
 		</div>
 
+		<div class="container">
+			<footer class="footer">
+				<p align="center">
+					&copy; Roxd 2016
+				</p>
+			</footer>
+		</div>
 	</body>
 </html>

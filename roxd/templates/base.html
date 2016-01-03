@@ -20,18 +20,30 @@
 		<div class="container">
 			<nav class="nav">
 				<div class="navbar-header">
-					<img src="{% static 'site/images/logo.png' %}"/>
+					<img src="{% static 'site/images/logo.png' %}" />
+					<span class="label label-default" style="font-size:24px;">Mend the Road</span>
 				</div>
+
 				<div class="navbar-collapse collapse">
 					<div class="navbar-right">
-						<button type="submit" class="btn btn-success" onclick="location='/signin/'">
-							Sign in
-						</button>
-						<button type="submit" class="btn btn-primary">
-							Sign up
-						</button>
+					{% if request.user.is_authenticated %}
+					<button type="button" class="btn btn-primary" onclick="location='/profile'">
+						{{ request.user.username }}'s Profile
+					</button>
+					<button type="button" class="btn btn-info" onclick="location='/logout'">
+						Logout
+					</button>
+					{% else %}
+					<button type="button" class="btn btn-success" onclick="location='/signin/url={{ request.path|escape }}'">
+						Sign in
+					</button>
+					<button type="button" class="btn btn-primary">
+						Sign up
+					</button>
+					{% endif %}
 					</div>
 				</div>
+
 				<div class="navbar-inverse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li {% if request.path == '/' %} class="active" {% endif %}><a href="/">Hot Board</a></li>
@@ -39,7 +51,6 @@
 						<li {% if request.path == '/waypoint' %} class="active" {% endif %}><a href="#">Explore Waypoints</a></li>
 						<li {% if request.path == '/activity' %} class="active" {% endif %}><a href="#">Join Activities</a></li>
 						<li {% if request.path == '/message' %} class="active" {% endif %}><a href="#">Pull Messages</a></li>
-						<li {% if request.path == '/profile' %} class="active" {% endif %}><a href="#">My Profile</a></li>
 					</ul>
 				</div>
 			</nav>

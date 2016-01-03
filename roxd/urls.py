@@ -6,7 +6,8 @@ from member import views as member_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', roxd_views.index, name='home_page'),
+    url(r'^$', roxd_views.index, name='home'),
     url(r'^track/', include(track_urls)),
-    url(r'^signin/', member_views.signin, name='signin_page'),
+    url(r'^signin/', member_views.signin, name='signin'),
+    url(r'^logout/', member_views.logout, name='logout'),
 ]

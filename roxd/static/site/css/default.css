@@ -1,8 +1,9 @@
 body {
+	background-color: #eee;
 	font-size: 12px;
 	font-family: Arial,Verdana,sans-serif;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 }
 
 ul>li.active {
@@ -29,9 +30,18 @@ ul>li.active {
 	border: 1px solid #eee;
 }
 
+.login {
+	width: 460px;
+	padding: 0px;
+}
+
+.login-errors {
+	width: 460px;
+}
+
 
 .form-signin {
-  max-width: 420px;
+  max-width: 460px;
   padding: 15px;
   margin: 0 auto;
 }
