@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'gpx',
     'track',
     'member',
+    'workspace',
 ]
 
 MIDDLEWARE_CLASSES = [

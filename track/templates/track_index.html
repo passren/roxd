@@ -21,40 +21,55 @@
 <div class="container-fluid row">
 	<div class="col-md-3">
         <div class="row">
-    		<div class="list-group">
-    			{% for i in '12345678'|make_list %}
-    			<div class="list-group-item">
-    				<div class="row">
-    					<div class="col-md-2">
-    						<img src="{% static 'site/images/logo-tiny.png' %}">
-    					</div>
-    					<div class="col-md-10">
-							<p><a href="#" class="list-group-item-heading btn-sm btn-Link">Haituo - Yanjiaping - Pijiuxi - Dahaituo Village {{ i }}</a></p>
+			<div class="list-group">
+				<div class="list-group-item" align="center">
+					<div class="row">
+						<nav>
+							<ul class="pagination" style="margin: 0px 0px;">
+								<li><a href="#">Latest <span class="glyphicon glyphicon-sort"></span></a></li>
+								<li><a href="#">Rating <span class="glyphicon glyphicon-sort"></span></a></li>
+								<li><a href="#">Creator <span class="glyphicon glyphicon-sort"></span></a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				{% for i in '1234567'|make_list %}
+				<div class="list-group-item">
+					<div class="row">
+						<div class="col-md-2">
+							<img src="{% static 'site/images/logo-tiny.png' %}">
+						</div>
+						<div class="col-md-10">
+							<p>
+								<a class="list-group-item-heading btn-sm btn-Link">Haituo - Yanjiaping - Pijiuxi {{ i }}</a>
+							</p>
 							<p class="list-group-item-text">{{ track.description|default:'No Description!' }}</p>
 							<p class="list-group-item-text">{{ track.creator }}@{{ track.create_date|date:'Y-m-d H:i' }}</p>
 						</div>
-    				</div>
-    			</div>
-    			{% endfor %}
-    		</div>
+					</div>
+				</div>
+				{% endfor %}
+				<div class="list-group-item" align="center">
+					<div class="row">
+						<nav>
+							<ul class="pagination" style="margin: 0px 0px;">
+								<li><a href="#" aria-label="Previous"> <span
+										aria-hidden="true">&laquo;</span>
+								</a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">6</a></li>
+								<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="row">
-			<nav>
-				<ul class="pagination" style="margin:0px 0px;">
-					<li><a href="#" aria-label="Previous"> <span
-							aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#" aria-label="Next"> <span
-							aria-hidden="true">&raquo;</span></a></li>
-				</ul>
-			</nav>
-		</div>
+
 	</div>
 	<div class="col-md-9">
 		<div class="row container-fluid map-toolbar">
