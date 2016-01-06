@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Models of GPX object
 class Gpx(models.Model):
@@ -19,9 +20,9 @@ class Gpx(models.Model):
     extensions = models.TextField(blank=True)
     origial_xml = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    create_user = models.IntegerField(null=False)
+    create_user = models.ForeignKey(User, null=False, related_name='gpx_create_user_id')
     last_updated_date = models.DateTimeField(auto_now=True)
-    update_user = models.IntegerField(null=False)
+    update_user = models.ForeignKey(User, null=False, related_name='gpx_update_user_id')
     
 class Route(models.Model):
     id = models.AutoField(primary_key=True)
@@ -34,9 +35,9 @@ class Route(models.Model):
     type = models.CharField(max_length=50, blank=True)
     extensions = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    create_user = models.IntegerField(null=False)
+    create_user = models.ForeignKey(User, null=False, related_name='route_create_user_id')
     last_updated_date = models.DateTimeField(auto_now=True)
-    update_user = models.IntegerField(null=False)
+    update_user = models.ForeignKey(User, null=False, related_name='route_update_user_id')
     
 class Track(models.Model):
     id = models.AutoField(primary_key=True)
@@ -49,9 +50,9 @@ class Track(models.Model):
     type = models.CharField(max_length=50, blank=True)
     extensions = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    create_user = models.IntegerField(null=False)
+    create_user = models.ForeignKey(User, null=False, related_name='track_create_user_id')
     last_updated_date = models.DateTimeField(auto_now=True)
-    update_user = models.IntegerField(null=False)
+    update_user = models.ForeignKey(User, null=False, related_name='track_update_user_id')
     
 class Waypoint(models.Model):
     id = models.AutoField(primary_key=True)
@@ -77,9 +78,9 @@ class Waypoint(models.Model):
     dgpsid = models.IntegerField(null=True)
     extensions = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    create_user = models.IntegerField(null=False)
+    create_user = models.ForeignKey(User, null=False, related_name='waypoint_create_user_id')
     last_updated_date = models.DateTimeField(auto_now=True)
-    update_user = models.IntegerField(null=False)
+    update_user = models.ForeignKey(User, null=False, related_name='waypoint_update_user_id')
     
 class Gpx_Route_Rel(models.Model):
     id = models.AutoField(primary_key=True)

@@ -27,7 +27,7 @@
 				<div class="navbar-collapse collapse">
 					<div class="navbar-right">
 					{% if request.user.is_authenticated %}
-					<button type="button" class="btn btn-primary" onclick="location='/profile'">
+					<button type="button" class="btn btn-primary" onclick="location='/profile/{{ request.user.username }}'">
 						{{ request.user.username }}'s Profile
 					</button>
 					<button type="button" class="btn btn-info" onclick="location='/logout'">
@@ -37,7 +37,7 @@
 					<button type="button" class="btn btn-success" onclick="location='/signin/url={{ request.path|escape }}'">
 						Sign in
 					</button>
-					<button type="button" class="btn btn-primary">
+					<button type="button" class="btn btn-primary" onclick="location='/signup'">
 						Sign up
 					</button>
 					{% endif %}
@@ -64,8 +64,8 @@
 		
 		<div class="container">
 			<footer class="footer">
-				<p>
-					&copy; Roxd 2016
+				<p align="center">
+					&copy; MendRoad 2016
 				</p>
 			</footer>
 		</div>

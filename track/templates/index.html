@@ -6,35 +6,63 @@
 <link rel="stylesheet" href="{% static 'openlayers/ol.css' %}" type="text/css">
 {% endblock %}
 
+{% block head_script_block %}
+{% endblock %}
+
 {% block content %}
 <div style="padding-top: 5px;">
 	<form>
-	<div class="form-group">
-		<input type="text" class="form-control" id="key_words" placeholder="Search tracks here...">
-	</div>
+		<div class="form-group input-group">
+			<input type="text" name="key_words" class="form-control" placeholder="Search tracks here..." aria-describedby="basic-addon2">
+			<span class="input-group-addon" id="basic-addon2"><a href="#"><span class="glyphicon glyphicon-search"></span></a></span>
+		</div>
 	</form>
 </div>
 <div class="container-fluid row">
 	<div class="col-md-3">
         <div class="row">
     		<div class="list-group">
+    			{% for i in '12345678'|make_list %}
     			<div class="list-group-item">
-    				<div class="list-group-item-heading">
-                        <a href="javascript:mapUtil.loadTrackOnMap({{ track.id }});">XXXXX1</a>
-                    </div>
-                    <div class="list-group-item-text">{{ track.description|default:'No Description!' }}</div>
-                    <div class="list-group-item-text" align="right">{{ track.creator }}@{{ track.create_date|date:'Y-m-d H:i' }}</div>
+    				<div class="row">
+    					<div class="col-md-2">
+    						<img src="{% static 'site/images/logo-tiny.png' %}">
+    					</div>
+    					<div class="col-md-10">
+							<p><a href="#" class="list-group-item-heading btn-sm btn-Link">Haituo - Yanjiaping - Pijiuxi - Dahaituo Village {{ i }}</a></p>
+							<p class="list-group-item-text">{{ track.description|default:'No Description!' }}</p>
+							<p class="list-group-item-text">{{ track.creator }}@{{ track.create_date|date:'Y-m-d H:i' }}</p>
+						</div>
+    				</div>
     			</div>
+    			{% endfor %}
     		</div>
-        </div>
+		</div>
+		<div class="row">
+			<nav>
+				<ul class="pagination" style="margin:0px 0px;">
+					<li><a href="#" aria-label="Previous"> <span
+							aria-hidden="true">&laquo;</span>
+					</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li><a href="#" aria-label="Next"> <span
+							aria-hidden="true">&raquo;</span></a></li>
+				</ul>
+			</nav>
+		</div>
 	</div>
 	<div class="col-md-9">
 		<div class="row container-fluid map-toolbar">
             <div class="btn-toolbar-right">
     			<div class="btn-group btn-group-sm" role="group">
-    				<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-zoom-in"></span>+</button>
-    				<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-zoom-out"></span>-</button>
-    				<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    				<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-zoom-in"></span>+</button>
+    				<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-zoom-out"></span>-</button>
+    				<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                         Switch
                         <span class="caret"></span>
                     </button>
@@ -47,9 +75,9 @@
     				</ul>
 				</div>
 				<div class="btn-group btn-group-sm" role="group">
-    				<button class="btn btn-info" type="button">Waypoints</button>
-    				<button class="btn btn-info" type="button">Tracks</button>
-    				<button class="btn btn-info" type="button">Photos</button>
+    				<button class="btn btn-primary" type="button">Waypoints</button>
+    				<button class="btn btn-primary" type="button">Tracks</button>
+    				<button class="btn btn-primary" type="button">Photos</button>
     			</div>
             </div>
 		</div>
@@ -64,6 +92,13 @@
 {% block body_script_block %}
 <script type="text/javascript" src="{% static 'openlayers/ol.js' %}"></script>
 <script>
+
+$(function() {
+	$(".list-group .list-group-item a").click(function(){
+    	$(".list-group").children().removeClass("active");
+    	$(this).parent().parent().parent().parent().addClass("active");
+    });
+	
 	var map = new ol.Map({
 		layers : [new ol.layer.Tile({
 			source : new ol.source.OSM()
@@ -79,17 +114,6 @@
 			zoom : 4
 		})
 	});
-
-	document.getElementById('zoom-out').onclick = function() {
-		var view = map.getView();
-		var zoom = view.getZoom();
-		view.setZoom(zoom - 1);
-	};
-
-	document.getElementById('zoom-in').onclick = function() {
-		var view = map.getView();
-		var zoom = view.getZoom();
-		view.setZoom(zoom + 1);
-	}; 
+});
 </script>
 {% endblock %}

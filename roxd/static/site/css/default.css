@@ -10,11 +10,15 @@ ul>li.active {
 	font-weight: bold;
 }
 
+.jumbotron {
+	background-color: #ffe;
+}
+
 .footer {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 10px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd;
 }
 
 .map-toolbar {
@@ -23,25 +27,25 @@ ul>li.active {
 
 .map-panel {
 	padding-left: 10px;
+	padding-top: 5px;
 }
 
 .map {
 	height: 640px;
-	border: 1px solid #eee;
+	border: 1px solid #265A88;
 }
 
 .login {
-	width: 460px;
+	width: 520px;
 	padding: 0px;
 }
 
 .login-errors {
-	width: 460px;
+	width: 520px;
 }
 
-
-.form-signin {
-  max-width: 460px;
+.form-signin, .form-signup {
+  max-width: 520px;
   padding: 15px;
   margin: 0 auto;
 }
@@ -49,10 +53,9 @@ ul>li.active {
 .form-signin .checkbox {
   margin-bottom: 10px;
 }
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
+
+.form-signin .form-control,
+.form-signup .form-control {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
@@ -61,16 +64,5 @@ ul>li.active {
   padding: 10px;
   font-size: 16px;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+
+

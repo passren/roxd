@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="container-fluid panel">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-8">
+				<form class="form-signup" action="/signup/" method="post">
+					{% csrf_token %}
+					<label for="inputUsername" class="title">Username:{{ form.username.errors }}</label>
+					<input type="text" name="username" class="form-control" placeholder="Username" required autofocus value="{{ form.username.value|default:'' }}" />
+					<p></p>
+					<label for="inputEmail" class="title">Email Address:{{ form.email.errors }}</label>
+					<input type="email" name="email" class="form-control" placeholder="Email address" required value="{{ form.email.value|default:'' }}" />
+					<p></p>
+					<label for="inputPhone" class="title">Phone Number (Optional):{{ form.phone.errors }}</label>
+					<input type="text" name="phone" class="form-control" placeholder="Phone Number" value="{{ form.phone.value|default:'' }}" />
+					<p></p>
+					<label for="inputPassword" class="title">Password: {{ form.password.errors }}</label>
+					<input type="password" name="password" class="form-control" placeholder="Password" required value="{{ form.password.value|default:'' }}" />
+					<p></p>
+					<label for="inputPasswordConfirmed" class="title">Confirm Password: {{ form.password.errors }}</label>
+					<input type="password" name="passwordConfirmed" class="form-control" placeholder="Confirm Password" required value="{{ form.passwordConfirmed.value|default:'' }}" />
+					<p></p>
+					<button class="btn btn-lg btn-info btn-block" type="submit">
+						Sign up to MendRoad</button>
+				</form>
+			</div>
+			<div class="col-md-4">
+				<ul class="list-group">
+					<li class="list-group-item"><h3 align="center">You’ll love MendRoad</h3></li>
+					<li class="list-group-item">
+						<ul>
+							<li><span class="label label-default">Unlimited</span> collaborators</li>
+							<li><span class="label label-default">Unlimited</span> tracks downloading</li>
+						</ul>
+					<li class="list-group-item">
+						<ul>
+							<li>Great communication</li>
+							<li>Free for use</li>
+							<li>Open source community</li>
+						</ul>
+					</li>
+    			</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', roxd_views.index, name='home'),
     url(r'^track/', include(track_urls)),
+    url(r'^signup/', member_views.signup, name='signup'),
     url(r'^signin/', member_views.signin, name='signin'),
     url(r'^logout/', member_views.logout, name='logout'),
+    url(r'^profile/(?P<username>\w+/$)', member_views.profile, name='profile'),
 ]

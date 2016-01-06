@@ -33,16 +33,16 @@
 
 		<div class="container login panel panel-success">
 			<div class="panel-heading">
-				<h2 class="form-signin-heading" align="center">Sign in to Roxd</h2>
+				<h2 class="form-signin-heading" align="center">Sign in to MendRoad</h2>
 			</div>
 			<div class="panel-body">
 				<form class="form-signin" action="/signin/" method="post">
 					{% csrf_token %}
 					<label for="inputUsername" class="title">Username: {{ form.username.errors }}</label>
-					<input type="text" name="username" class="form-control" placeholder="Username or email address" 1required autofocus value="{{ form.username.value|default:'' }}" />
+					<input type="text" name="username" class="form-control" placeholder="Username or email address" required autofocus value="{{ form.username.value|default:'' }}" />
 					<p></p>
 					<label for="inputPassword" class="title">Password: {{ form.password.errors }}</label>
-					<input type="password" name="password" class="form-control" placeholder="Password" 1required value="{{ form.password.value|default:'' }}" />
+					<input type="password" name="password" class="form-control" placeholder="Password" required value="{{ form.password.value|default:'' }}" />
 					
 					<div class="checkbox">
 						<label><input name="remember" type="checkbox" {% if form.remember.value %}checked{% endif %}/>Remember me</label>
@@ -56,13 +56,13 @@
 		
 		<div class="container panel form-signin">
 			<p><a href="#">Forgot password?</a></p>
-			<p>New to Roxd? <a href="#">Create an account. </a></p>
+			<p>New to MendRoad? <a href="/signup">Create an account. </a></p>
 		</div>
 
 		<div class="container">
 			<footer class="footer">
 				<p align="center">
-					&copy; Roxd 2016
+					&copy; MendRoad 2016
 				</p>
 			</footer>
 		</div>
