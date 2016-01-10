@@ -47,11 +47,11 @@
 				<div class="navbar-inverse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li {% if request.path == '/' %} class="active" {% endif %}><a href="/">Hot Board</a></li>
-						<li {% if request.path == '/track/' %} class="active" {% endif %}><a href="/track">Explore Roads</a></li>
-						<li {% if request.path == '/activity/' %} class="active" {% endif %}><a href="#">Join Activities</a></li>
-						<li {% if request.path == '/message/' %} class="active" {% endif %}><a href="#">Pull Messages</a></li>
+						<li {% if 'track/' in request.path %} class="active" {% endif %}><a href="/track">Explore Roads</a></li>
+						<li {% if 'activity/' in request.path %} class="active" {% endif %}><a href="#">Join Activities</a></li>
+						<li {% if 'message/' in request.path %} class="active" {% endif %}><a href="#">Pull Messages</a></li>
 						{% if request.user.is_authenticated %}
-						<li {% if request.path == '/workspace/' %} class="active" {% endif %}><a href="/workspace">My Workspace</a></li>
+						<li {% if 'workspace/' in request.path %} class="active" {% endif %}><a href="/workspace">My Workspace</a></li>
 						{% endif %}
 					</ul>
 				</div>

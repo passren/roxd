@@ -1,0 +1,23 @@
+{% extends "workspace_base.html" %}
+
+{% block title %}Workspace{% endblock %}
+{% load staticfiles %}
+
+{% block workspace_content %}
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid" align="right">
+			<button type="button" class="btn btn-success navbar-btn" onclick="location='/'">New Road from GPX</button>
+		</div>
+	</nav>
+
+	{% for i in '12345'|make_list%}
+	<div class="panel panel-default">
+		<div class="panel-heading"><h4><a href="#">闫家坪</a> <span class="label label-info">海陀山</span></h4></div>
+		<div class="panel-body">
+	    	Panel content
+		</div>
+	</div>
+	{% endfor %}
+
+{% endblock %}

@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 def index(request):
-    return render(request, 'workspace_index.html')
+    return redirect('/workspace/roads')
+
+def roads(request):
+    return render(request, 'workspace_roads.html')
