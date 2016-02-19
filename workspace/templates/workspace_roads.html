@@ -7,7 +7,7 @@
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid" align="right">
-			<button type="button" class="btn btn-success navbar-btn" onclick="location='/'">New Road from GPX</button>
+			<button id="btnNewRoadGpx" type="button" class="btn btn-success navbar-btn">New Road from GPX</button>
 		</div>
 	</nav>
 
@@ -18,6 +18,59 @@
 	    	Panel content
 		</div>
 	</div>
-	{% endfor %}
+{% endfor %}
 
+	<div id="dlgNewRoadGpx" title="Create a new Road from GPX" class="sr-only">
+		<p>Upload your .gpx file to create a new road.</p>
+
+		<form method="post">
+			{% csrf_token %}
+			<fieldset>
+				<label for="name" class="title">Name</label>
+				<input type="text" name="name" id="name" class="form-control" placeholder="Name" required autofocus value="" />
+				
+				<label for="desc" class="title">Description</label>
+				<input type="text" name="desc" id="desc" class="form-control" placeholder="Description" value="" />
+
+				<label for="gpx" class="title">Gpx file</label>
+				<input type="file" name="gpx" id="gpx"  class="form-control" placeholder="Choose your .gpx file">
+
+				<input type="submit" tabindex="-1" style="position: absolute; top: -1000px">
+			</fieldset>
+		</form>
+</div>
+
+{% endblock %}
+
+{% block body_script_block %}
+<script type="text/javascript" src="{% static 'jqueryui/jquery-ui.min.js' %}"></script>
+<script>
+$(function() {
+	var dialog, form
+
+	dialog = $("#dlgNewRoadGpx").dialog({
+			autoOpen : false,
+			height : 350,
+			width : 500,
+			modal : true,
+			buttons : {
+				"Create a Road" : createRoadfromGpx,
+				Cancel : function() {
+					dialog.dialog("close");
+				}
+			},
+			close : function() {
+				dialog.dialog("close");
+			}
+		});
+
+		$("#btnNewRoadGpx").click(function() {
+			dialog.dialog("open");
+		});
+
+		function createRoadfromGpx() {
+			alert(1);
+		}
+	});
+</script>
 {% endblock %}

@@ -3,6 +3,7 @@
 {% block title %}Workspace{% endblock %}
 {% load staticfiles %}
 {% block addtional_static %}
+<link rel="stylesheet" href="{% static 'jqueryui/jquery-ui.min.css' %}" type="text/css">
 <style>
 .photo {
 	padding-bottom: 20px;
@@ -42,8 +43,4 @@
 		
 	</div>
 </div>
-{% endblock %}
-
-{% block body_script_block %}
-
 {% endblock %}
